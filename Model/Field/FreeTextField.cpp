@@ -4,15 +4,12 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    InterFace :  Field
-    Memebers  : headLine
-    Methods   : Field()
-                getHeadLine()
-                setHeadLine(string headLine)
-                changeParameters()
+    Class     : FreeTextField
+    Memebers  : defaultText
+    Methods   : changeParameters()
     
-    Description: A class to set an interface for every field that can be in form 
-                 in order to implement this class the 
+    Description: Implementing Field of type "Free Text", given a option to set
+                 a default text to it. 
 
 ----------------------------------------------------------------*/
 
@@ -23,16 +20,17 @@ private:
     string _defaultText;
 
 public:
-    FreeTextField(const string &headLine) : Field(headLine) {}
+    FreeTextField(const string &headLine) : Field(headLine), _defaultText("") {}
     FreeTextField(const string &headLine, const string &defaultText) : Field(headLine), _defaultText(defaultText) {}
     ~FreeTextField() {}
 
 public:
-    virtual void changeParameters(vector<string> params)
+    virtual void changeParameters(const vector<string>& params)
     {
-        if(params.size() != 1)
+        if (params.size() != 1)
             throw "Not a valid input";
-        else{
+        else
+        {
             _defaultText = params[0];
         }
     }

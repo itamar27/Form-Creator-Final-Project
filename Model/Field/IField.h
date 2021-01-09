@@ -27,5 +27,5 @@ protected:
 public:
     virtual string getHeadLine() = 0;
     virtual void setHeadLine(const string &headLine) = 0;
-    virtual void changeParameters(vector<string> params) = 0;
+    virtual void changeParameters(const vector<string>& params) = 0;
 };
