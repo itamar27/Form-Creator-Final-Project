@@ -29,5 +29,5 @@ private:
 public:
     virtual void addField(IField field) = 0;
     virtual void removeField(IField field) = 0;
-    virtual void adjustOrder(string name, int newPosition) = 0;
+    virtual void adjustFieldsOrder(string name, int newPosition) = 0;
 };
