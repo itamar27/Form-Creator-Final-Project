@@ -6,14 +6,21 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    InterFace :  Component
-    Memebers  : _name, _fields
-    Methods   : addField()
-                removeField(field)
-                adjustOrder(string name, int newPosition)
-    
-    Description: A class to set an interface for every component 
-                 that is part of the form's general structure. 
+    InterFace :  IFormModel
+    Methods   : newForm(string name);
+                loadForm(string name);
+                saveForm(string name);
+                changeFormName(string formName, string newName);
+                addComponent(string name, string type);
+                removeComponent(string name);
+                changeComponentName(string componentName, string newName);
+                adjustComponentOrder(string name, int newPoistion);
+                addField(string name, string type);
+                removeField(string name);
+                adjustFieldOrder(string name, int newPoistion);
+
+    Description: This is the interface for every model that is part of the form creator system,
+                 through a simple contruct with this interface any model can be impleneted in this face;
 
 ----------------------------------------------------------------*/
 
