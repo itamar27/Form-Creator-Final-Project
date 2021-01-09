@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 /*----------------------------------------------------------------
 
     InterFace :  Field
@@ -17,21 +16,13 @@ using namespace std;
                  in order to implement this class the 
 
 ----------------------------------------------------------------*/
-class Field
+class IField
 {
 private:
     string _headLine;
 
 public:
-    Field(string headLine) : _headLine(headLine) {}
-
-public:
     virtual string getHeadLine() const { return _headLine; }
-    virtual void setHeadLine(string headLine) { _headLine = headLine;}
+    virtual void setHeadLine(string headLine) { _headLine = headLine; }
     virtual void changeParameters() = 0;
-}
-
-
-class FreeTextField : public Field{
-    
-} 
+};
