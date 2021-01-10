@@ -1,4 +1,7 @@
+#pragma once
+
 #include <string>
+#include <vector>
 #include <iostream>
 
 using namespace std;
@@ -18,11 +21,11 @@ using namespace std;
 ----------------------------------------------------------------*/
 class IField
 {
-private:
+protected:
     string _headLine;
 
 public:
-    virtual string getHeadLine() const { return _headLine; }
-    virtual void setHeadLine(string headLine) { _headLine = headLine; }
-    virtual void changeParameters() = 0;
+    virtual string getHeadLine() = 0;
+    virtual void setHeadLine(const string &headLine) = 0;
+    virtual void changeParameters(const vector<string>& params) = 0;
 };
