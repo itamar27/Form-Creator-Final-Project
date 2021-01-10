@@ -8,7 +8,7 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    InterFace :  Field
+    InterFace :  IField
     Memebers  : headLine
     Methods   : Field()
                 getHeadLine()

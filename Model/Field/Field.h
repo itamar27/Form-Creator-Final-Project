@@ -4,7 +4,7 @@
 
 /*----------------------------------------------------------------
 
-    InterFace :  Field
+    InterFace : Field
     Memebers  : headLine
     Methods   : Field()
                 getHeadLine()
