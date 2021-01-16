@@ -12,17 +12,29 @@ MyController::MyController(IView *view)
     if (view != nullptr)
         _view = view;
 
-    _model = new FormModel();
-    _model->Attach(*this);
+    // _model = new FormModel();
+    // _model->Attach(*this);
 
-    // _commands["dir"] = new ShowDir(_model, _view);
-    // _commands["generate maze"] = new GenerateMaze(_model, _view);
+    _commands["new form"] = new NewFormCommand(_view);
+    _commands["load form"] = new LoadFormCommand(_view);
+    _commands["save form"] = new SaveFormCommand(_view);
+    _commands["change form name"] = new ChangeFormNameCommand(_view);
+    _commands["add component"] = new AddComponentCommand(_view);
+    _commands["remove component"] = new RemoveComponentCommand(_view);
+    _commands["change component name"] = new ChangeComponentNameCommand(_view);
+    _commands["adjust component order"] = new AdjustComponentOrderCommand(_view);
+    _commands["add field"] = new AddFieldCommand(_view);
+    _commands["remove field"] = new RemoveFieldCommand(_view);
+    _commands["adjust field order"] = new AdjustFieldOrderCommand(_view);
+    _commands["set field data"] = new SetFieldDataCommand(_view);
 
 
     // std::ifstream loadFile(data_file, std::ios::in | std::ios::binary);
     // if (loadFile.is_open())
     //     _model->loadAllMazes(&loadFile);
     // loadFile.close();
+    string welcomeMessage = "/////////////////////////////////////////////////////////////////////////////////////////\n|\t\t\tWelcome to Form - Creator!\t\t\t\t\t|\n|\t\t\tLet's start creating Forms!\t\t\t\t\t|\n/////////////////////////////////////////////////////////////////////////////////////////";
+    _view->display(welcomeMessage);
 }
 
 /* 
@@ -33,8 +45,8 @@ MyController::MyController(IView *view)
 
 void MyController::update(IFormModel &model)
 {
-    std::string tmp = model.getState();
-
+    // std::string tmp = model.getState();
+    string tmp = "No model yet";
     _view->display(tmp);
 }
 
