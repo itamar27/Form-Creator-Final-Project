@@ -23,8 +23,9 @@ using namespace std;
     
     Description: This class is implementing the IController interface.
                  The class holds a map which used to get a Command class by name: string.
-                 The observer design pattern here uses the Model: IFormModel as an observeable.
-
+                 Each command has a name which is the key for the map, and a Command which
+                 is used to call for execute().
+ 
 ----------------------------------------------------------------*/
 
 class MyController : public IController
