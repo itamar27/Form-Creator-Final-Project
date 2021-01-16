@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "IView.h"
-//#include "../Controller/Controller.h"
+#include "../Controller/MyController.h"
 
 using namespace std;
 
@@ -35,6 +35,7 @@ public:
     virtual void start();
     virtual ostream &getOStream();
     virtual vector<string> parseInput(string& str, MyController* con);
+    virtual void display(string& msg);
 
 private:
     ostream &_out;
