@@ -8,7 +8,7 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    InterFace :  IFormModel
+    InterFace : IFormModel
     Methods   : newForm(string name);
                 loadForm(string name);
                 saveForm(string name);
