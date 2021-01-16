@@ -90,3 +90,7 @@ std::vector<std::string> CLI::parseInput(std::string &str, MyController *con)
     str = command;
     return vec;
 }
+
+void CLI::display(string& msg) {
+    _out << msg << endl;
+}
