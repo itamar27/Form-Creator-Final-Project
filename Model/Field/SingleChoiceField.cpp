@@ -22,7 +22,7 @@ public:
     {
         if (params.size() != 2)
         {
-            throw "Bad numbers of parameters to method: changeParameters() inside SingleChoiceField ";
+            throw "Bad numbers of parameters to method: changeParameters() inside SingleChoiceField";
         }
         else
         {

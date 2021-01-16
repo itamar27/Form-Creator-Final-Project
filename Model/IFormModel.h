@@ -45,7 +45,6 @@ public:
     virtual void addField(string name, string type) = 0;
     virtual void removeField(string name) = 0;
     virtual void adjustFieldOrder(string name, int newPoistion) = 0;
-
-    //virtual setFieldData(string name, int index) = 0;  ------------> what is this method using for?
+    virtual void setFieldData(string name, int index) = 0;
 
 };
