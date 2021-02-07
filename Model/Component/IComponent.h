@@ -35,4 +35,14 @@ public:
 public:
     virtual void saveComponent() = 0;
     virtual void uploadComponent() = 0;
+
+    //The following are for testing!!!
+    void printAllFields() {
+        std::cout << "Component name: " << _name << std::endl;
+
+        for(int i = 0; i < _fields.size() ; i++) {
+            std::cout << (i+1) << ". ";
+            std::cout << _fields[i]->getHeadLine() << std::endl;
+        }
+    }
 };

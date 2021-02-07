@@ -27,7 +27,7 @@ protected:
     string _headLine;
 
 public:
-    virtual string getHeadLine() = 0;
+    virtual string getHeadLine() const = 0;
     virtual void setHeadLine(const string &headLine) = 0;
 
 public:
