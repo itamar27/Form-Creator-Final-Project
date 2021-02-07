@@ -24,7 +24,7 @@ class IComponent
 
 protected:
     string _name;
-    vector<IField> _fields;
+    vector<IField*> _fields;
 
 public:
     virtual void addField(IField *field) = 0;

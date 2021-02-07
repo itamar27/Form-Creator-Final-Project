@@ -1,3 +1,7 @@
+#pragma once
+
+#include <vector>
+
 #include "./IComponent.h"
 
 /*----------------------------------------------------------------
@@ -24,14 +28,10 @@ public:
     }
 
 public:
-    virtual void addField(IField *field)
-    {
-        
-
-    }
-
-    virtual void removeField(int index)
-    {
-
-    }
+    virtual void addField(IField *field);
+    virtual void removeField(int index);
+    virtual void adjustFieldsOrder(string name, int newPosition);
+    virtual void changeFieldParameter(int index) ;
+    virtual void saveComponent() ;
+    virtual void uploadComponent();
 };

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "../Component/IComponent.h"
+#include "../Component/Component.h"
 
 using namespace std;
 
@@ -23,12 +23,12 @@ using namespace std;
 class IForm
 {
 
-private:
+protected:
     string _name;
-    vector<IComponent> _components;
+    vector<IComponent *> _components;
 
 public:
-    virtual void addComponent(IComponent component) = 0;
-    virtual void removeComponent(IComponent component) = 0;
+    virtual void addComponent(Component* component) = 0;
+    virtual void removeComponent(int index) = 0;
     virtual void adjustComponentOrder(string name, int newPosition) = 0;
 };

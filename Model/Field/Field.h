@@ -1,7 +1,6 @@
 #pragma once
 
 #include "./IField.h"
-#include "./FieldException.h"
 
 /*----------------------------------------------------------------
 
@@ -29,8 +28,9 @@ public:
     virtual string getHeadLine() const { return _headLine; }
     virtual void setHeadLine(const string &headLine)
     {
-        if (headLine == "")
-                throw new FieldException("Not a proper headline");
+        if (headLine == ""){
+            //Throw exception
+        }
 
         _headLine = headLine;
     }

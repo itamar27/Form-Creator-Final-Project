@@ -24,6 +24,20 @@ public:
     FreeTextField(const string &headLine, const string &defaultText) : Field(headLine), _defaultText(defaultText) {}
     ~FreeTextField() {}
 
+    virtual void changeParameters(const vector<string> &params) {
+
+    }
+    virtual void saveField(std::string name, std::ofstream *oFile) {
+
+    }
+    virtual void loadField(std::ifstream *iFile, std::string name) {
+
+    }
+    virtual void generateField() {
+        
+    }
+
+
 public:
     virtual void changeParameters(const vector<string>& params)
     {
