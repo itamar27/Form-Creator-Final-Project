@@ -31,4 +31,5 @@ public:
     virtual void addComponent(Component* component) = 0;
     virtual void removeComponent(int index) = 0;
     virtual void adjustComponentOrder(string name, int newPosition) = 0;
+    virtual void generateForm() = 0;
 };

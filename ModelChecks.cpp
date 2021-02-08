@@ -21,6 +21,9 @@
  * Componenet.addField()
  * Component.removeField()
  * HtmlForm()
+ * HtmlForm.generate()
+ * Component.generate()
+ * FreeTextField.generate()
  * 
  */
 
@@ -57,4 +60,17 @@ int main()
 
     form.printAllComponents();
 
+    std::cout << "------------------------- NOW GENERATING FORM -------------------------" << std::endl;
+
+    HtmlForm myForm("Free Text Form");
+
+    Component myComponent("Hobbies");
+
+    FreeTextField myFreeTextField("Enter your hobbies here");
+
+    myComponent.addField(&myFreeTextField);
+    
+    myForm.addComponent(&myComponent);
+
+    myForm.generateForm();
 }
