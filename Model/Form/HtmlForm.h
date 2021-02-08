@@ -1,4 +1,5 @@
 #pragma once
+#include <fstream>
 
 #include "./IForm.h"
 
@@ -15,6 +16,7 @@ public:
     virtual void addComponent(Component *component);
     virtual void removeComponent(int index);
     virtual void adjustComponentOrder(string name, int newPosition);
+    virtual void generateForm();
 
     ~HtmlForm()
     {

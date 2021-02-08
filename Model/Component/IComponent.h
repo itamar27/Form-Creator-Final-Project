@@ -35,6 +35,7 @@ public:
 public:
     virtual void saveComponent() = 0;
     virtual void uploadComponent() = 0;
+    virtual std::string generateComponent() = 0;
 
     //The following are for testing!!!
     void printAllFields() {

@@ -34,4 +34,5 @@ public:
     virtual void changeFieldParameter(int index) ;
     virtual void saveComponent() ;
     virtual void uploadComponent();
+    virtual std::string generateComponent();
 };

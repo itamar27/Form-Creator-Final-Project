@@ -17,3 +17,14 @@ void Component::adjustFieldsOrder(string name, int newPosition){}
 void Component::changeFieldParameter(int index) {}
 void Component::saveComponent() {}
 void Component::uploadComponent(){}
+std::string Component::generateComponent() {
+
+    std::string component("");
+    component += "<h2>" + _name + "</h2>\n";
+    for(int i=0; i<_fields.size(); i++) {
+        component += _fields[i]->generateField();
+    }
+
+    return component;
+}
+

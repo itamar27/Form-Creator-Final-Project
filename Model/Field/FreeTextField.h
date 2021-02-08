@@ -26,6 +26,6 @@ public:
 
     void saveField(std::string name, std::ofstream *oFile);
     void loadField(std::ifstream *iFile, std::string name);
-    void generateField();
+    std::string generateField();
     virtual void changeParameters(const vector<string>& params);
 };
