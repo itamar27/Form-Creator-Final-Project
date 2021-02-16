@@ -23,6 +23,7 @@ std::string Component::generateComponent() {
     component += "<h2>" + _name + "</h2>\n";
     for(int i=0; i<_fields.size(); i++) {
         component += _fields[i]->generateField();
+        component += "<br>";
     }
 
     return component;
