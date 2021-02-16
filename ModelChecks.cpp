@@ -1,4 +1,5 @@
 #include "./Model/Field/FreeTextField.h"
+#include "./Model/Field/InputField.h"
 #include "./Model/Field/ListSelectField.h"
 #include "./Model/Field/MultiChoiceField.h"
 #include "./Model/Field/SingleChoiceField.h"
@@ -8,7 +9,7 @@
 
 /*
  * Compilation line:
- * g++ ./Model/Field/ListSelectField.cpp ./Model/Field/MultiChoiceField.cpp ./Model/Field/SingleChoiceField.cpp .\Model\Field\FreeTextField.cpp .\Model\Component\Component.cpp .\Model\Form\HtmlForm.cpp .\ModelChecks.cpp -o Test.exe
+ * g++ ./Model/Field/InputField.cpp ./Model/Field/ListSelectField.cpp ./Model/Field/MultiChoiceField.cpp ./Model/Field/SingleChoiceField.cpp .\Model\Field\FreeTextField.cpp .\Model\Component\Component.cpp .\Model\Form\HtmlForm.cpp .\ModelChecks.cpp -o Test.exe
  * 
  * Please update it if you are editing this file.
  */
@@ -77,6 +78,8 @@ int main()
     Component myComponent("Hobbies");
     Component listComponent("Same Hobbies in list");
 
+    InputField bestHobby("Best Hobby",  "Your best hobby is?");
+    InputField worstHobby("Worst Hobby");
     FreeTextField myFreeTextField("Enter your hobbies here");
     SingleCoichField singleField("Profession");
 
@@ -105,6 +108,8 @@ int main()
     myComponent.addField(&multiField);
 
     listComponent.addField(&listField);
+    listComponent.addField(&bestHobby);
+    listComponent.addField(&worstHobby);
     
     myForm.addComponent(&myComponent);
     myForm.addComponent(&listComponent);
