@@ -1,40 +1,20 @@
-#include "./SelectField.h"
+#include "./SingleChoiceField.h"
 
-using namespace std;
+void SingleCoichField::saveField(std::string name, std::ofstream *oFile) {
 
-/*----------------------------------------------------------------
+}
 
-    InterFace : SingleChoiceField
-    Memebers  : None
-    Methods   : changeParameters()
-    
-    Description: Implementing SelectField for a single choice option.
+void SingleCoichField::loadField(std::ifstream *iFile, std::string name) {
 
-----------------------------------------------------------------*/
+}
 
-class SingleCoichField : public SelectField
-{
-public:
-    SingleCoichField(string headLine) : SelectField(headLine) {}
-    ~SingleCoichField() {}
-
-    virtual void changeParameters(const vector<string> &params)
-    {
-        if (params.size() != 2)
-        {
-            throw "Bad numbers of parameters to method: changeParameters() inside SingleChoiceField";
-        }
-        else
-        {
-            string action = params.at(0);
-            if (action == "add")
-            {
-                addValue(params.at(1));
-            }
-            else if (action == "remove")
-            {
-                removeValue(stoi(params.at(1)));
-            }
-        }
+std::string SingleCoichField::generateField() {
+    std::string field("");
+    field += "<label for='" + _headLine + ":'>" + _headLine + "</label><br>\n";
+    for(int i=0; i<_values.size(); i++) {
+        field += "<input type='radio' id='" + _values[i] + "' name= '" + _headLine + "' value= '" + _values[i] +"'>\n";
+        field += "<label for= '" + _values[i] + "'>" + _values[i] + "</label><br>\n";
     }
-};
+
+    return field;
+}
