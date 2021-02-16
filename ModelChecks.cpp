@@ -1,4 +1,5 @@
 #include "./Model/Field/FreeTextField.h"
+#include "./Model/Field/ListSelectField.h"
 #include "./Model/Field/MultiChoiceField.h"
 #include "./Model/Field/SingleChoiceField.h"
 #include "./Model/Component/Component.h"
@@ -7,7 +8,7 @@
 
 /*
  * Compilation line:
- * g++ ./Model/Field/MultiChoiceField.cpp ./Model/Field/SingleChoiceField.cpp .\Model\Field\FreeTextField.cpp .\Model\Component\Component.cpp .\Model\Form\HtmlForm.cpp .\ModelChecks.cpp -o Test.exe
+ * g++ ./Model/Field/ListSelectField.cpp ./Model/Field/MultiChoiceField.cpp ./Model/Field/SingleChoiceField.cpp .\Model\Field\FreeTextField.cpp .\Model\Component\Component.cpp .\Model\Form\HtmlForm.cpp .\ModelChecks.cpp -o Test.exe
  * 
  * Please update it if you are editing this file.
  */
@@ -29,6 +30,9 @@
  * SingleChoiceField()
  * SingleChoiceField.addValue()
  * SingleChoiceField.generate()
+ * ListSelectField()
+ * ListSelectField.generate()
+ * ListSelectField.addValue()
  * 
  */
 
@@ -71,6 +75,7 @@ int main()
     HtmlForm myForm("Free Text Form");
 
     Component myComponent("Hobbies");
+    Component listComponent("Same Hobbies in list");
 
     FreeTextField myFreeTextField("Enter your hobbies here");
     SingleCoichField singleField("Profession");
@@ -87,12 +92,22 @@ int main()
     multiField.addValue("TV");
     multiField.addValue("Board Games");
 
+    ListSelectField listField("Hobbies list");
+
+    listField.addValue("Soccer");
+    listField.addValue("Gaming");
+    listField.addValue("TV");
+    listField.addValue("Board Games");
+
 
     myComponent.addField(&myFreeTextField);
     myComponent.addField(&singleField);
     myComponent.addField(&multiField);
+
+    listComponent.addField(&listField);
     
     myForm.addComponent(&myComponent);
+    myForm.addComponent(&listComponent);
 
     myForm.generateForm();
 }
