@@ -36,6 +36,12 @@ public:
     virtual void saveComponent() = 0;
     virtual void uploadComponent() = 0;
     virtual std::string generateComponent() = 0;
+    virtual int containtsField(string fieldName) = 0;
+
+
+    string getName() {
+        return _name;
+    }
 
     //The following are for testing!!!
     void printAllFields() {

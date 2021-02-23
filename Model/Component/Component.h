@@ -35,4 +35,6 @@ public:
     virtual void saveComponent() ;
     virtual void uploadComponent();
     virtual std::string generateComponent();
+    virtual int containtsField(string fieldName);
+
 };

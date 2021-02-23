@@ -29,3 +29,15 @@ std::string Component::generateComponent() {
     return component;
 }
 
+int Component::containtsField(string name) {
+    auto it = _fields.begin();
+    while(it != _fields.end()) {
+        if((*it)->getName() == name)
+            return 1;
+        
+        it++;
+    }
+
+    return 0;
+}
+
