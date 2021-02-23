@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "../Component/Component.h"
+#include "../Field/Field.h"
 
 using namespace std;
 
@@ -28,8 +29,12 @@ protected:
     vector<IComponent *> _components;
 
 public:
+    void changeName(string name) { _name = name;}
     virtual void addComponent(Component* component) = 0;
-    virtual void removeComponent(int index) = 0;
+    virtual void addField(string componentName, Field* field) = 0;
+    virtual void removeComponent(string name) = 0;
     virtual void adjustComponentOrder(string name, int newPosition) = 0;
     virtual void generateForm() = 0;
+    virtual int containtsComponent(string name) = 0;
+    virtual int containtsField(string componentName ,string fieldName) = 0;
 };

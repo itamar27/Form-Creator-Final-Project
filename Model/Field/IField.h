@@ -37,4 +37,8 @@ public:
     virtual void saveField(std::string name, std::ofstream *oFile) = 0;
     virtual void loadField(std::ifstream *iFile, std::string name) = 0;
     virtual std::string generateField() = 0;
+
+    string getName() {
+        return _headLine;
+    }
 };

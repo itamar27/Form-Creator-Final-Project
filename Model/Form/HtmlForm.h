@@ -14,9 +14,13 @@ public:
     void generate();
 
     virtual void addComponent(Component *component);
-    virtual void removeComponent(int index);
+    virtual void addField(string componentName, Field* field);
+    virtual void removeComponent(string name);
     virtual void adjustComponentOrder(string name, int newPosition);
     virtual void generateForm();
+    virtual int containtsComponent(string name);
+    virtual int containtsField(string componentName ,string fieldName);
+
 
     ~HtmlForm()
     {

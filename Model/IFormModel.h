@@ -30,21 +30,22 @@ class IFormModel
 {
 
 public:
-    virtual void newForm(string name) = 0;
-    virtual void loadForm(string name) = 0;
-    virtual void saveForm(string name) = 0;
-    virtual void changeFormName(string formName, string newName) = 0;
+    virtual string newForm(string name) = 0;
+    virtual string loadForm(string name) = 0;
+    virtual string saveForm(string name) = 0;
+    virtual string changeFormName(string formName, string newName) = 0;
+    virtual string generateForm(string name) = 0;
 
 public:
-    virtual void addComponent(string name, string type) = 0;
-    virtual void removeComponent(string name) = 0;
-    virtual void changeComponentName(string componentName, string newName) = 0;
-    virtual void adjustComponentOrder(string name, int newPoistion) = 0;
+    virtual string addComponent(string formName, string componentName) = 0;
+    virtual string removeComponent(string formName, string componentName) = 0;
+    virtual string changeComponentName(string componentName, string newName) = 0;
+    virtual string adjustComponentOrder(string name, int newPoistion) = 0;
 
 public:
-    virtual void addField(string name, string type) = 0;
-    virtual void removeField(string name) = 0;
-    virtual void adjustFieldOrder(string name, int newPoistion) = 0;
-    virtual void setFieldData(string name, int index) = 0;
+    virtual string addField(string formName, string componentName, string fieldName, string type) = 0;
+    virtual string removeField(string name) = 0;
+    virtual string adjustFieldOrder(string name, int newPoistion) = 0;
+    virtual string setFieldData(string name, int index) = 0;
 
 };
