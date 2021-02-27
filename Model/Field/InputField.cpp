@@ -15,3 +15,11 @@ std::string InputField::generateField()
 
     return field;
 }
+
+void InputField::changeParameters(const vector<string>& params) {
+    if(params.size() != 1){
+        // Throw an exception
+    }
+
+    _defaultText = params.at(0);
+}

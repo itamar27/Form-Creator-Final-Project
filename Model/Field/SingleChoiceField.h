@@ -16,31 +16,14 @@ using namespace std;
 class SingleCoichField : public SelectField
 {
 public:
+    SingleCoichField(std::ifstream &iFile) {
+        loadField(iFile);
+    }
+
     SingleCoichField(string headLine) : SelectField(headLine) {}
     ~SingleCoichField() {}
 
-    virtual void saveField(std::string name, std::ofstream *oFile);
-    virtual void loadField(std::ifstream *iFile, std::string name);
+    virtual void saveField(std::ofstream &oFile);
+    virtual void loadField(std::ifstream &iFile);
     virtual std::string generateField();
-
-
-    virtual void changeParameters(const vector<string> &params)
-    {
-        if (params.size() != 2)
-        {
-            throw "Bad numbers of parameters to method: changeParameters() inside SingleChoiceField";
-        }
-        else
-        {
-            string action = params.at(0);
-            if (action == "add")
-            {
-                addValue(params.at(1));
-            }
-            else if (action == "remove")
-            {
-                removeValue(stoi(params.at(1)));
-            }
-        }
-    }
 };

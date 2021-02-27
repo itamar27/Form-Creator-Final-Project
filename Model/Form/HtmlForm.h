@@ -6,6 +6,11 @@
 class HtmlForm : public IForm
 {
 public:
+
+    HtmlForm(std::ifstream &iFile) {
+        loadForm(iFile);
+    }
+
     HtmlForm(std::string name)
     {
         _name = name;
@@ -20,6 +25,9 @@ public:
     virtual void generateForm();
     virtual int containtsComponent(string name);
     virtual int containtsField(string componentName ,string fieldName);
+    virtual void saveForm(std::ofstream &oFile);
+    virtual void loadForm(std::ifstream &iFile);
+    virtual void changeFieldData(string componentName, string fieldName, const vector<string>& params);
 
 
     ~HtmlForm()

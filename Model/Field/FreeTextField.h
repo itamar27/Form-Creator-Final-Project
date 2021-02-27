@@ -1,3 +1,5 @@
+#pragma once
+
 #include "./Field.h"
 
 using namespace std;

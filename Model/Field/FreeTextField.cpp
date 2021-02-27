@@ -24,6 +24,6 @@ void FreeTextField::changeParameters(const vector<string> &params)
         throw "Not a valid input";
     else
     {
-        _defaultText = params[0];
+        _defaultText = params.at(0);
     }
 }

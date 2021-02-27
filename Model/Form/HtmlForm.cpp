@@ -85,3 +85,47 @@ int HtmlForm::containtsField(string componentName ,string fieldName) {
     return 0;
 }
 
+void HtmlForm::saveForm(std::ofstream &oFile) {
+    int n = 0;
+    
+    // Write form name
+    n = _name.length();
+    oFile.write((char*)&n, sizeof(n));
+    oFile.write(_name.c_str(), n);
+
+    // Write all components
+    int compLen = _components.size();
+    oFile.write((char*)&compLen, sizeof(compLen));
+    for(auto it = _components.begin(); it != _components.end(); it++) {
+        (*it)->saveComponent(oFile);
+    }
+}
+
+void HtmlForm::loadForm(std::ifstream &iFile) {
+    int n = 0;
+
+    // Read form name
+    iFile.read((char*)&n, sizeof(n));
+    char* temp = new char[n+1];
+    iFile.read(temp, n);
+    temp[n] = '\0';
+    _name = temp;
+
+    // Read all components
+    int compLen = 0;
+    iFile.read((char*)&compLen, sizeof(compLen));
+    for(int i = 0; i < compLen; i++) {
+        Component* comp = new Component(iFile);
+        _components.push_back(comp);
+    }
+}
+
+void HtmlForm::changeFieldData(string componentName, string fieldName, const vector<string>& params) {
+    for(auto it = _components.begin(); it != _components.end(); it++) {
+        if((*it)->getName() == componentName) {
+            (*it)->changeFieldParameter(fieldName, params);
+        }
+    }
+}
+
+

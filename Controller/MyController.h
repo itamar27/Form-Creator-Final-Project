@@ -2,11 +2,10 @@
 #include <string>
 #include <map>
 
-#include "IController.h"
 #include "Command.h"
 
 #include "../View/IView.h"
-#include "../Model/IFormModel.h"
+#include "../Model/HtmlFormModel.h"
 
 using namespace std;
 
@@ -28,7 +27,7 @@ using namespace std;
  
 ----------------------------------------------------------------*/
 
-class MyController : public IController
+class MyController
 {
 
 public:
@@ -36,7 +35,6 @@ public:
     ~MyController();
 
 public:
-    virtual void update();
     virtual Command *get(const std::string &command);
     virtual void update(IFormModel &model);
 

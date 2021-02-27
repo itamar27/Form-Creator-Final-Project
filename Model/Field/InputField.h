@@ -1,3 +1,5 @@
+#pragma once
+
 #include "./Field.h"
 
 using namespace std;
@@ -28,11 +30,5 @@ public:
     void loadField(std::ifstream *iFile, std::string name);
     std::string generateField();
     
-    virtual void changeParameters(const vector<string>& params) {
-        if(params.size() != 1){
-            // Throw an exception
-        }
-
-         _defaultText = params.at(1);
-    }
+    virtual void changeParameters(const vector<string>& params);
 };

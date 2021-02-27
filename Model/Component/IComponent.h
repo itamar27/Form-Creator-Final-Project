@@ -28,6 +28,7 @@ protected:
 
 public:
     virtual void addField(IField *field) = 0;
+<<<<<<< Updated upstream
     virtual void removeField(int index) = 0;
     virtual void adjustFieldsOrder(string name, int newPosition) = 0;
     virtual void changeFieldParameter(int index) = 0;
@@ -35,6 +36,15 @@ public:
 public:
     virtual void saveComponent() = 0;
     virtual void uploadComponent() = 0;
+=======
+    virtual void removeField(string name) = 0;
+    virtual void adjustFieldsOrder(string fieldName, string replaceWith) = 0;
+    virtual void changeFieldParameter(string name, const vector<string>& params) = 0;
+
+public:
+    virtual void saveComponent(std::ofstream &oFile) = 0;
+    virtual void loadComponent(std::ifstream &iFile) = 0;
+>>>>>>> Stashed changes
     virtual std::string generateComponent() = 0;
     virtual int containtsField(string fieldName) = 0;
 

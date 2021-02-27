@@ -2,6 +2,9 @@
 #include <vector>
 #include <string>
 
+#include "../View/IView.h"
+#include "../Model/IFormModel.h"
+
 using namespace std;
 
 /*----------------------------------------------------------------
@@ -20,6 +23,10 @@ class Command
 {
 public:
     virtual void execute(std::vector<std::string> param) = 0;
+
+protected:
+    IView* _view;
+    IFormModel* _model;
 };
 
 
@@ -32,11 +39,23 @@ class NewFormCommand: public Command {
 private:
     IView* _view;
 public:
-    NewFormCommand(IView* view) {
+    NewFormCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
     virtual void execute(vector<string> param) {
-        string msg = "You got to NewFormCommand";
+        string msg;
+        if(param.size() < 1) {
+            msg = "To create a new form please enter a name only";
+            _view->display(msg);
+        }
+
+        string toSend = "";
+        for(auto it = param.begin(); it != param.end(); it++) {
+            toSend += (*it);
+        }
+
+        msg = _model->newForm(toSend);
         _view->display(msg);
     }
 };
@@ -51,12 +70,24 @@ class LoadFormCommand: public Command {
 private:
     IView* _view;
 public:
-    LoadFormCommand(IView* view) {
+    LoadFormCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to LoadFormCommand";
+        string msg;
+        if(param.size() < 1) {
+            msg = "To load a form please enter the filename to load from";
+            _view->display(msg);
+        }
+
+        string toSend = "";
+        for(auto it = param.begin(); it != param.end(); it++) {
+            toSend += (*it);
+        }
+
+        msg = _model->loadForm(toSend);
         _view->display(msg);
     }
 };
@@ -71,12 +102,23 @@ class SaveFormCommand: public Command {
 private:
     IView* _view;
 public:
-    SaveFormCommand(IView* view) {
+    SaveFormCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to SaveFormCommand";
+        string msg;
+        if(param.size() < 1) {
+            msg = "To save a form please enter the file name you want to save it to";
+            _view->display(msg);
+        }
+        string toSend = "";
+        for(auto it = param.begin(); it != param.end(); it++) {
+            toSend += (*it);
+        }
+
+        msg = _model->saveForm(toSend);
         _view->display(msg);
     }
 };
@@ -91,12 +133,46 @@ class ChangeFormNameCommand: public Command {
 private:
     IView* _view;
 public:
-    ChangeFormNameCommand(IView* view) {
+    ChangeFormNameCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to ChangeFormNameCommand";
+        string msg;
+        if(param.size() < 1) {
+            msg = "To change a form name enter the new name";
+            _view->display(msg);
+        }
+
+        string toSend = "";
+        for(auto it = param.begin(); it != param.end(); it++) {
+            toSend += (*it);
+        }
+
+        msg = _model->changeFormName(toSend);
+        _view->display(msg);
+    }
+};
+
+
+/* 
+ *      Class: GenerateFormCommand
+ *      Description: This command execute the call for a change form name in the model.
+ */
+
+class GenerateFormCommand: public Command {
+private:
+    IView* _view;
+public:
+    GenerateFormCommand(IView* view, IFormModel* model) {
+        _view = view;
+        _model = model;
+    }
+
+    virtual void execute(vector<string> param) {
+        string msg;
+        msg = _model->generateForm();
         _view->display(msg);
     }
 };
@@ -111,12 +187,24 @@ class AddComponentCommand: public Command {
 private:
     IView* _view;
 public:
-    AddComponentCommand(IView* view) {
+    AddComponentCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to AddComponentCommand";
+        string msg;
+        if(param.size() < 1) {
+            msg = "To add a new component enter the new component's name";
+            _view->display(msg);
+        }
+
+        string toSend = "";
+        for(auto it = param.begin(); it != param.end(); it++) {
+            toSend += (*it);
+        }
+
+        msg = _model->addComponent(toSend);
         _view->display(msg);
     }
 };
@@ -131,12 +219,19 @@ class RemoveComponentCommand: public Command {
 private:
     IView* _view;
 public:
-    RemoveComponentCommand(IView* view) {
+    RemoveComponentCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to RemoveComponentCommand";
+        string msg;
+        if(param.size() != 1) {
+            msg = "To remove a component enter the component's name";
+            _view->display(msg);
+        }
+
+        msg = _model->removeComponent(param[0]);
         _view->display(msg);
     }
 };
@@ -151,12 +246,19 @@ class ChangeComponentNameCommand: public Command {
 private:
     IView* _view;
 public:
-    ChangeComponentNameCommand(IView* view) {
+    ChangeComponentNameCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to ChangeComponentNameCommand";
+        string msg;
+        if(param.size() != 2) {
+            msg = "To change component's name enter the current name and then the new one";
+            _view->display(msg);
+        }
+
+        msg = _model->changeComponentName(param[0], param[1]);
         _view->display(msg);
     }
 };
@@ -171,12 +273,19 @@ class AdjustComponentOrderCommand: public Command {
 private:
     IView* _view;
 public:
-    AdjustComponentOrderCommand(IView* view) {
+    AdjustComponentOrderCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to AdjustComponentOrderCommand";
+        string msg;
+        if(param.size() != 2) {
+            msg = "To change components order enter the first and second components you want to switch";
+            _view->display(msg);
+        }
+
+        msg = _model->adjustComponentOrder(param[0], param[1]);
         _view->display(msg);
     }
 };
@@ -191,12 +300,19 @@ class AddFieldCommand: public Command {
 private:
     IView* _view;
 public:
-    AddFieldCommand(IView* view) {
+    AddFieldCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to AddFieldCommand";
+        string msg;
+        if(param.size() != 3) {
+            msg = "To add a field please enter the component's name, new field name and a type";
+            _view->display(msg);
+        }
+
+        msg = _model->addField(param[0], param[1], param[2]);
         _view->display(msg);
     }
 };
@@ -211,12 +327,19 @@ class RemoveFieldCommand: public Command {
 private:
     IView* _view;
 public:
-    RemoveFieldCommand(IView* view) {
+    RemoveFieldCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to RemoveFieldCommand";
+        string msg;
+        if(param.size() != 2) {
+            msg = "To remove a field please enter the component's name and the field's name";
+            _view->display(msg);
+        }
+
+        msg = _model->removeField(param[0], param[1]);
         _view->display(msg);
     }
 };
@@ -231,12 +354,19 @@ class AdjustFieldOrderCommand: public Command {
 private:
     IView* _view;
 public:
-    AdjustFieldOrderCommand(IView* view) {
+    AdjustFieldOrderCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to AdjustFieldOrderCommand";
+        string msg;
+        if(param.size() != 3) {
+            msg = "To adjust the fields order please enter the component's name and the two fields you want to switch";
+            _view->display(msg);
+        }
+
+        msg = _model->adjustFieldOrder(param[0], param[1], param[2]);
         _view->display(msg);
     }
 };
@@ -251,12 +381,23 @@ class SetFieldDataCommand: public Command {
 private:
     IView* _view;
 public:
-    SetFieldDataCommand(IView* view) {
+    SetFieldDataCommand(IView* view, IFormModel* model) {
         _view = view;
+        _model = model;
     }
 
     virtual void execute(vector<string> param) {
-        string msg = "You got to SetFieldDataCommand";
+        string msg;
+        if(param.size() < 3) {
+            msg = "To change field data, enter the component's name, the field's name and values to change";
+            _view->display(msg);
+        }
+
+        vector<string> toSend; 
+        for(int i = 2; i < param.size(); i++)
+            toSend.push_back(param[i]);
+
+        msg = _model->setFieldData(param[0], param[1], toSend);
         _view->display(msg);
     }
 };

@@ -37,4 +37,7 @@ public:
     virtual void generateForm() = 0;
     virtual int containtsComponent(string name) = 0;
     virtual int containtsField(string componentName ,string fieldName) = 0;
+    virtual void saveForm(std::ofstream &oFile) = 0;
+    virtual void loadForm(std::ifstream &iFile) = 0;
+    virtual void changeFieldData(string componentName, string fieldName, const vector<string>& params) = 0;
 };

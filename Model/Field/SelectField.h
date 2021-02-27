@@ -21,10 +21,31 @@ class SelectField : public Field
 {
 protected:
     vector<string> _values;
-
+    SelectField() {}
+    
 public:
     SelectField(string headLine) : Field(headLine) {}
     ~SelectField() {}
+
+    virtual void changeParameters(const vector<string> &params)
+    {
+        if (params.size() != 2)
+        {
+            throw "Bad numbers of parameters to method: changeParameters() inside SingleChoiceField ";
+        }
+        else
+        {
+            string action = params.at(0);
+            if (action == "add")
+            {
+                addValue(params.at(1));
+            }
+            else if (action == "remove")
+            {
+                removeValue(params.at(1));
+            }
+        }
+    }
 
     virtual void addValue(string value)
     {
@@ -34,11 +55,12 @@ public:
         }
     }
 
-    virtual void removeValue(int index)
+    virtual void removeValue(string val)
     {
-        if (index >= 0 && index < _values.size())
-        {
-            _values.erase(_values.begin() + index);
+        for(auto it = _values.begin(); it != _values.end(); it++){
+            if((*it) == val) {
+                _values.erase(it);
+            }
         }
     }
 };

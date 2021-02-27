@@ -33,20 +33,23 @@ using namespace std;
 
 ----------------------------------------------------------------*/
 
-class HtmlFormModel
+class HtmlFormModel : public IFormModel
 {
 public:
-    HtmlFormModel() {};
+    HtmlFormModel() {
+        _form = nullptr;
+    };
     ~HtmlFormModel() {};
 
 public:
     virtual string newForm(string name);
-    virtual string loadForm(string name);
-    virtual string saveForm(string name);
-    virtual string changeFormName(string formName, string newName);
-    virtual string generateForm(string name);
+    virtual string loadForm(string fileName);
+    virtual string saveForm(string fileName);
+    virtual string changeFormName(string newName);
+    virtual string generateForm();
 
 public:
+<<<<<<< Updated upstream
     virtual string addComponent(string formName, string componentName);
     virtual string removeComponent(string formName, string componentName);
     virtual string changeComponentName(string componentName, string newName);
@@ -57,7 +60,19 @@ public:
     virtual string removeField(string name);
     virtual string adjustFieldOrder(string name, int newPoistion);
     virtual string setFieldData(string name, int index);
+=======
+    virtual string addComponent(string componentName);
+    virtual string removeComponent(string componentName);
+    virtual string changeComponentName(string componentName, string newName);
+    virtual string adjustComponentOrder(string componentName, string replaceWith);
+
+public:
+    virtual string addField(string componentName, string fieldName, string type);
+    virtual string removeField(string componentName, string fieldName);
+    virtual string adjustFieldOrder(string componentName, string fieldName, string replaceWith);
+    virtual string setFieldData(string componentName, string fieldName, const vector<string>& params);
+>>>>>>> Stashed changes
 
 private:
-    map<string, HtmlForm*> _forms; 
+    HtmlForm* _form;
 };
