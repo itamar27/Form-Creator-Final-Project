@@ -7,14 +7,15 @@ using namespace std;
 /*----------------------------------------------------------------
 
     Class     : InputField
-    Memebers  : _defaultText
+
+    Members   : string _defaultText
+
     Methods   : saveField(std::ofstream &oFile)
                 loadField(std::ifstream &iFile)
                 generateField()
                 changeParameters(const vector<string> &params)
     
-    Description: Implementing Field of type "Input (Text)", given a option to set
-                 a default text to it. 
+    Description: Implementing Field of type "Input (Text)", given a option to set a default text to it. 
 
 ----------------------------------------------------------------*/
 

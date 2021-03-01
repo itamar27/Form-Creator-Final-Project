@@ -12,7 +12,7 @@ void InputField::saveField(std::ofstream &oFile)
     // Write headline
     saveHeadLine(oFile);
 
-    // Write defualt text
+    // Write default text
     n = _defaultText.length();
     oFile.write((char *)&n, sizeof(n));
     oFile.write(_defaultText.c_str(), n);
@@ -24,7 +24,7 @@ void InputField::loadField(std::ifstream &iFile)
     int n = 0;
     loadHeadLine(iFile);
 
-    // Read defualt text
+    // Read default text
     iFile.read((char *)&n, sizeof(n));
     char *temp = new char[n + 1];
     iFile.read(temp, n);

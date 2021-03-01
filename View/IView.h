@@ -6,14 +6,14 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    InterFace : View
+    Interface : IView
 
     Methods   : start()
                 getOStream()
                 display(string& msg)
     
-    Description: The IView has start() for creating the UI for the user,
-                 getOStream() to set the out put stream for the view,
+    Description: The IView has start() method to create the UI for the user.
+                 getOStream() to set the out put stream for the view.
                  and display() to update the view.
 
 ----------------------------------------------------------------*/

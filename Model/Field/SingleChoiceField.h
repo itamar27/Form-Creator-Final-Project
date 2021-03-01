@@ -15,16 +15,16 @@ using namespace std;
 
 ----------------------------------------------------------------*/
 
-class SingleCoichField : public SelectField
+class SingleChoiceField : public SelectField
 {
 public:
-    SingleCoichField(std::ifstream &iFile)
+    SingleChoiceField(std::ifstream &iFile)
     {
         loadField(iFile);
     }
 
-    SingleCoichField(string headLine) : SelectField(headLine) {}
-    ~SingleCoichField() {}
+    SingleChoiceField(string headLine) : SelectField(headLine) {}
+    ~SingleChoiceField() {}
 
     virtual void saveField(std::ofstream &oFile);
     virtual void loadField(std::ifstream &iFile);

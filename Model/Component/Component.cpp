@@ -1,5 +1,34 @@
 #include "./Component.h"
 
+Component::Component(std::ifstream &iFile)
+{
+    loadComponent(iFile);
+}
+
+Component::Component(string name)
+{
+    if (name == "")
+        throw "Not a proper name for a component";
+    _name = name;
+}
+
+void Component::printComponent()
+{
+    std::cout << "Component: " << _name << std::endl;
+    int i = 1;
+    for (auto field : _fields)
+    {
+        std::cout << "\t\t" << i++ << '.';
+        field->printField();
+    }
+}
+
+void Component::changeName(string name)
+{
+    if(name != "")
+        _name = name;
+    return;
+}
 void Component::addField(IField *field)
 {
     if (field == nullptr)
@@ -115,7 +144,7 @@ void Component::loadComponent(std::ifstream &iFile)
         }
         else if (typeString == "SCF")
         {
-            field = new SingleCoichField(iFile);
+            field = new SingleChoiceField(iFile);
         }
 
         // Add field if type was found

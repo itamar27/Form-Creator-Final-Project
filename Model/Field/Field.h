@@ -7,6 +7,7 @@
 /*----------------------------------------------------------------
 
     Interface : Field
+    
     Methods   : getHeadLine()
                 setHeadLine(const string &headLine)
                 loadHeadLine(std::ifstream &iFile)
@@ -15,7 +16,7 @@
 
     Description: A class to set an interface for every field that can be in form 
                  in order to implement this class the. This class implements some
-                 of the behavior for IField but needs to be extended with more behaivor.
+                 of the behavior for IField but needs to be extended with more behavior.
 
 ----------------------------------------------------------------*/
 
@@ -32,10 +33,13 @@ public:
 
 public:
     virtual string getHeadLine() const { return _headLine; }
-
     virtual void setHeadLine(const string &headLine)
     {
         _headLine = headLine;
+    }
+    virtual void printField()
+    {
+        std::cout << "Field: " << _headLine << std::endl;
     }
 
 protected:

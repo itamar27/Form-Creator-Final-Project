@@ -1,9 +1,9 @@
 #include "MyController.h"
 
 /*
- *      Metod : Mycontroller (Constructor)
- *      Description: To intiazlize a MyController instance we must first use a view
- *                   to let our user control eveything, the user will chose his in and out streaming channels
+ *      Method : Mycontroller (Constructor)
+ *      Description: To initialize a MyController instance we must first use a view
+ *                   to let our user control everything, the user will chose his in and out streaming channels
  *                   and will use the view start method to work with our Controller and model parts.
  */
 
@@ -27,6 +27,7 @@ MyController::MyController(IView *view)
     _commands["remove field"] = new RemoveFieldCommand(_view, _model);
     _commands["adjust field order"] = new AdjustFieldOrderCommand(_view, _model);
     _commands["set field data"] = new SetFieldDataCommand(_view, _model);
+    _commands["show current progress"] = new ShowProgress(_view, _model);
     _commands["exit"] = new ExitCommand(_view, _model);
 
     vector<string> keys;
@@ -60,7 +61,7 @@ Command *MyController::get(const std::string &command)
 
 /* 
  *      Method: Destructor
- *      Description: iterate throgh all commands that were allocated in MyController constructor
+ *      Description: iterate through all commands that were allocated in MyController constructor
  */
 
 MyController::~MyController()

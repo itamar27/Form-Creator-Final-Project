@@ -1,6 +1,6 @@
 #include "./SingleChoiceField.h"
 
-void SingleCoichField::saveField(std::ofstream &oFile)
+void SingleChoiceField::saveField(std::ofstream &oFile)
 {
     int n = 0;
     string type = "SCF";
@@ -23,7 +23,7 @@ void SingleCoichField::saveField(std::ofstream &oFile)
     }
 }
 
-void SingleCoichField::loadField(std::ifstream &iFile)
+void SingleChoiceField::loadField(std::ifstream &iFile)
 {
     // Read headline
     int n = 0;
@@ -43,7 +43,7 @@ void SingleCoichField::loadField(std::ifstream &iFile)
     }
 }
 
-std::string SingleCoichField::generateField()
+std::string SingleChoiceField::generateField()
 {
     std::string field("");
     field += "<label for='" + _headLine + ":'>" + _headLine + "</label><br>\n";

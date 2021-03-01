@@ -7,7 +7,7 @@ using namespace std;
 
     InterFace : SelectField
 
-    Memebers  : _values[]
+    Members  : _values[]
 
     Methods   : changeParameters(const vector<string> &params)
                 addValue(string value)

@@ -7,15 +7,15 @@ using namespace std;
 /*----------------------------------------------------------------
 
     Class     : FreeTextField
-    Memebers  : defaultText
+
+    Members   : string _defaultText
+
     Methods   : saveField(std::ofstream &oFile)
                 loadField(std::ifstream &iFile)
                 generateField()
                 changeParameters(const vector<string> &params)
     
-    Description: Implementing Field of type "Free Text", given a option to set
-                 a default text to it.
-
+    Description: Implementing Field of type "Free Text", given a option to set a default text to it.
 ----------------------------------------------------------------*/
 
 class FreeTextField : public Field

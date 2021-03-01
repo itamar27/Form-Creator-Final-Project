@@ -3,6 +3,19 @@
 // The path to the templates directory
 string path = "./Templates/";
 
+void HtmlFormModel::printModel()
+{
+
+    if (_form != nullptr)
+    {
+        _form->printForm();
+    }
+    else
+    {
+        std::cout << "There is no existing form yet" << std::endl;
+    }
+}
+
 string HtmlFormModel::newForm(string name)
 {
     string returnMsg;
@@ -189,7 +202,7 @@ string HtmlFormModel::addField(string componentName, string fieldName, string ty
     }
     if (type == "SingleChoiceField")
     {
-        _form->addField(componentName, new SingleCoichField(fieldName));
+        _form->addField(componentName, new SingleChoiceField(fieldName));
         msg = "Field " + fieldName + " has been added";
     }
 

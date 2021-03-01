@@ -12,17 +12,17 @@ using namespace std;
 
     Class     : CLI
 
-    Memebers  : ostram& _out
+    Members   : ostream& _out
                 istream& _in
 
     Methods   : start()
                 getOStream()
                 display()
-                parseInput(string& str, MyController* con)
+                parseInput(string &str, MyController *con)
                 display(string &msg)
     
-    Description: A class implementing the IView interface through CLI (=Command Line Interface) 
-                 The addition of the parseInput() method is to parse the CLI input and send it to the Controller.
+    Description: A class implementing the IView interface through CLI (=Command Line Interface),
+                 it extendes the IView with parseInput() method in order to parse the CLI input and send it to the Controller.
 
 ----------------------------------------------------------------*/
 

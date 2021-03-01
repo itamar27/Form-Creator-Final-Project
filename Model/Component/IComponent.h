@@ -11,7 +11,10 @@ using namespace std;
 /*----------------------------------------------------------------
 
     InterFace :  IComponent
-    Memebers  : _name, _fields
+
+    Members   : string _name
+                vector<IField *> _fields
+
     Methods   : changeName(string name)
                 addField(IField *field)
                 removeField(string name)
@@ -49,21 +52,10 @@ public:
     virtual void loadComponent(std::ifstream &iFile) = 0;
     virtual std::string generateComponent() = 0;
     virtual int containtsField(string fieldName) = 0;
+    virtual void printComponent() = 0;
 
     string getName()
     {
         return _name;
-    }
-
-    //The following are for testing!!!
-    void printAllFields()
-    {
-        std::cout << "Component name: " << _name << std::endl;
-
-        for (int i = 0; i < _fields.size(); i++)
-        {
-            std::cout << (i + 1) << ". ";
-            std::cout << _fields[i]->getHeadLine() << std::endl;
-        }
     }
 };

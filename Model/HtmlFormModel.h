@@ -17,7 +17,7 @@ using namespace std;
 
     Class     : HtmlFormModel
 
-    Members   : _form
+    Members   : HtmlForm* _form
 
     Methods   : newForm(string name)
                 loadForm(string fileName)
@@ -58,6 +58,7 @@ public:
     virtual string saveForm(string fileName);
     virtual string changeFormName(string newName);
     virtual string generateForm();
+    virtual void printModel();
 
 public:
     virtual string addComponent(string componentName);

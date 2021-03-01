@@ -12,7 +12,8 @@
 
 /*----------------------------------------------------------------
 
-    InterFace :  Component
+    InterFace : Component
+    
     Methods   : addField(IField *field)
                 removeField(string name)
                 adjustFieldsOrder(string fieldName, string replaceWith)
@@ -29,29 +30,20 @@
 class Component : public IComponent
 {
 public:
-    Component(std::ifstream &iFile)
-    {
-        loadComponent(iFile);
-    }
-
-    Component(string name)
-    {
-        if (name == "")
-            throw "Not a proper name for a component";
-        _name = name;
-    }
+    Component(std::ifstream &iFile);
+    Component(string name);
 
 public:
-    virtual void changeName(string name)
-    {
-        _name = name;
-    }
+    virtual void saveComponent(std::ofstream &oFile);
+    virtual void loadComponent(std::ifstream &iFile);
+    virtual void printComponent();
+    virtual void changeName(string name);
+    virtual std::string generateComponent();
+
+public:
     virtual void addField(IField *field);
     virtual void removeField(string name);
     virtual void adjustFieldsOrder(string fieldName, string replaceWith);
     virtual void changeFieldParameter(string name, const vector<string> &params);
-    virtual void saveComponent(std::ofstream &oFile);
-    virtual void loadComponent(std::ifstream &iFile);
-    virtual std::string generateComponent();
     virtual int containtsField(string fieldName);
 };

@@ -11,10 +11,14 @@ using namespace std;
 /*----------------------------------------------------------------
 
     Class     : Command
+
+    Members   :  IView* _view
+                 IFormModel* _model
+            
     Methods   : execute()
     
     Description: For this design pattern we implement each command with only one method,
-                 exectute() which takes the data received from the input in the view and
+                 execute() which takes the data received from the input in the view and
                  making it ready for the model execution and then calling the model to
                  execute it.
 
@@ -22,6 +26,9 @@ using namespace std;
 
 class Command
 {
+public:
+    Command(IView *view, IFormModel *model) : _view(view), _model(model) {}
+
 public:
     virtual void execute() = 0;
     string getInput(string msg)
@@ -38,6 +45,15 @@ protected:
     IFormModel *_model;
 };
 
+
+/**
+ *  ----------Commands implementation---------------    
+ *      This section is an extend to the basic command class. 
+ *      For each command that the system has (every interaction between the controller and the model),
+ *      there is class below that implements this command.  
+ *  ------------------------------------------------
+ **/
+
 /* 
  *      Class: NewFormCommand
  *      Description: This command execute the call for a new form in the model.
@@ -47,10 +63,8 @@ class NewFormCommand : public Command
 {
 
 public:
-    NewFormCommand(IView *view, IFormModel *model)
+    NewFormCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
     virtual void execute()
     {
@@ -95,10 +109,8 @@ class LoadFormCommand : public Command
 {
 
 public:
-    LoadFormCommand(IView *view, IFormModel *model)
+    LoadFormCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -145,10 +157,8 @@ class SaveFormCommand : public Command
 {
 
 public:
-    SaveFormCommand(IView *view, IFormModel *model)
+    SaveFormCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -169,10 +179,8 @@ class ChangeFormNameCommand : public Command
 {
 
 public:
-    ChangeFormNameCommand(IView *view, IFormModel *model)
+    ChangeFormNameCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -193,10 +201,8 @@ class GenerateFormCommand : public Command
 {
 
 public:
-    GenerateFormCommand(IView *view, IFormModel *model)
+    GenerateFormCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -215,10 +221,8 @@ class AddComponentCommand : public Command
 {
 
 public:
-    AddComponentCommand(IView *view, IFormModel *model)
+    AddComponentCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -239,10 +243,8 @@ class RemoveComponentCommand : public Command
 {
 
 public:
-    RemoveComponentCommand(IView *view, IFormModel *model)
+    RemoveComponentCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -263,10 +265,8 @@ class ChangeComponentNameCommand : public Command
 {
 
 public:
-    ChangeComponentNameCommand(IView *view, IFormModel *model)
+    ChangeComponentNameCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -288,10 +288,8 @@ class AdjustComponentOrderCommand : public Command
 {
 
 public:
-    AdjustComponentOrderCommand(IView *view, IFormModel *model)
+    AdjustComponentOrderCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -313,10 +311,8 @@ class AddFieldCommand : public Command
 {
 
 public:
-    AddFieldCommand(IView *view, IFormModel *model)
+    AddFieldCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -339,10 +335,8 @@ class RemoveFieldCommand : public Command
 {
 
 public:
-    RemoveFieldCommand(IView *view, IFormModel *model)
+    RemoveFieldCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -364,10 +358,8 @@ class AdjustFieldOrderCommand : public Command
 {
 
 public:
-    AdjustFieldOrderCommand(IView *view, IFormModel *model)
+    AdjustFieldOrderCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -390,10 +382,8 @@ class SetFieldDataCommand : public Command
 {
 
 public:
-    SetFieldDataCommand(IView *view, IFormModel *model)
+    SetFieldDataCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -427,10 +417,8 @@ class HelpCommand : public Command
 {
 
 public:
-    HelpCommand(IView *view, IFormModel *model, vector<string> commands)
+    HelpCommand(IView *view, IFormModel *model, vector<string> commands) : Command(view, model)
     {
-        _view = view;
-        _model = model;
         _commands = commands;
     }
 
@@ -442,9 +430,27 @@ public:
         int i = 1;
         for (auto &command : _commands)
         {
-            msg = "\t\t" + to_string(i++) + ". " + command;
+            msg = to_string(i++) + ". " + command;
             _view->display(msg);
         }
+
+        msg = "\n\n -------------------------------------------------------------------------\n";
+        _view->display(msg);
+
+        msg = "In order to create the form properly you should start with the 'new form' command.";
+        msg += "\nAfter creating the form use the 'add component', that will use you as container for fields,";
+        msg += "\nnow you can add field to you components.";
+        msg += "\nFor every different set of fields you can create a new components and add more fields to them,";
+        msg += "\nuse the name of field as suggested below.\n\n\n";
+        _view->display(msg);
+
+        string fields = "FreeTextField - A large free text field.";
+        fields += "\nInputField - short text input";
+        fields += "\nSingleChoice - a select input, that provides only one choice among the list of values.";
+        fields += "\nMultiChoice - a select input, that provides multi choice choice among the list of values.";
+        fields += "\nListSelect - a drop list input, that provides only one choice among the list of values.";
+        _view->display(fields);
+
         msg = "\n/////////////////////////////////////////////////////////////////////////////////////////\n";
         _view->display(msg);
     }
@@ -462,19 +468,14 @@ class ExitCommand : public Command
 {
 
 public:
-    ExitCommand(IView *view, IFormModel *model)
+    ExitCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
     {
         _model->saveForm("last_form");
     }
-
-private:
-    vector<string> _commands;
 };
 
 /* 
@@ -486,10 +487,8 @@ class OnLoadCommand : public Command
 {
 
 public:
-    OnLoadCommand(IView *view, IFormModel *model)
+    OnLoadCommand(IView *view, IFormModel *model) : Command(view, model)
     {
-        _view = view;
-        _model = model;
     }
 
     virtual void execute()
@@ -513,7 +512,23 @@ public:
             }
         }
     }
+};
 
-private:
-    vector<string> _commands;
+/* 
+ *      Class: ShowProgress
+ *      Description: This command execute the call for showing the current progress of the model.
+ */
+
+class ShowProgress : public Command
+{
+
+public:
+    ShowProgress(IView *view, IFormModel *model) : Command(view, model)
+    {
+    }
+
+    virtual void execute()
+    {
+        _model->printModel();
+    }
 };

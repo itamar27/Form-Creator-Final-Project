@@ -9,7 +9,9 @@ using namespace std;
 /*----------------------------------------------------------------
 
     InterFace : IField
-    Memebers  : _headLine
+
+    Members  : _headLine
+    
     Methods   : getHeadLine()
                 setHeadLine(const string &headLine)
                 changeParameters(const vector<string> &params)
@@ -29,6 +31,7 @@ protected:
 public:
     virtual string getHeadLine() const = 0;
     virtual void setHeadLine(const string &headLine) = 0;
+    virtual void printField() = 0;
 
 public:
     virtual void changeParameters(const vector<string> &params) = 0;

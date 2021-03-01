@@ -1,0 +1,5 @@
+This folder is for saving the templates of a file.
+It is also includes the file "last_form.txt" that holds the last form editing that was made,
+if the program did not crash during its use and closed properly.
+
+When ever using load/ save of forms in the system, their binary form will be here.

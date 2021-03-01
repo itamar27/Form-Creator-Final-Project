@@ -26,8 +26,8 @@ using namespace std;
                 isFormExists()
                 removeForm()
 
-    Description: This is the interface for every model that is part of the form creator system,
-                 through a simple contruct with this interface any model can be impleneted in this interface.
+    Description: This is the interface for every model that is part of the form creator system.
+                 Through a simple contract with this interface any model can be implemeneted in this interface.
                  It will be used for the MVC as the facade of the model.
 
 ----------------------------------------------------------------*/
@@ -39,6 +39,7 @@ public:
     virtual string loadForm(string fileName) = 0;
     virtual string saveForm(string fileName) = 0;
     virtual string changeFormName(string newName) = 0;
+    virtual void printModel() = 0;
     virtual string generateForm() = 0;
 
 public:

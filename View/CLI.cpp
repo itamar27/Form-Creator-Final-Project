@@ -39,7 +39,7 @@ void CLI::start()
 
 /*
  *      Method: getOstream()
- *      Description: A friend function to return the 'out' stream of view to help other MVC members
+ *      Description: A method to return the 'out' stream of view to help other MVC members
  */
 
 std::ostream &CLI::getOStream()

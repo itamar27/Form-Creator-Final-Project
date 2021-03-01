@@ -11,10 +11,11 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    Class     : MyController
-    Memebers  : map<string, Command*> _commands
-                IFormModel* _model
-                IView* _view
+    Class    : MyController
+    
+    Members  : map<string, Command*> _commands
+               IFormModel* _model
+               IView* _view
 
     Methods   : get()
                 update()
