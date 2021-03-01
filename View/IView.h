@@ -4,11 +4,10 @@
 
 using namespace std;
 
-
 /*----------------------------------------------------------------
 
     InterFace : View
-    Memebers  : None
+
     Methods   : start()
                 getOStream()
                 display(string& msg)
@@ -24,5 +23,5 @@ class IView
 public:
     virtual void start() = 0;
     virtual ostream &getOStream() = 0;
-    virtual void display(string& msg) = 0;
+    virtual void display(string &msg) = 0;
 };

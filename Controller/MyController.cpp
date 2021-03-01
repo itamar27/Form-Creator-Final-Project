@@ -1,9 +1,8 @@
 #include "MyController.h"
 
-
 /*
  *      Metod : Mycontroller (Constructor)
- *      Description: To intiazlize a MyController instance we must first use a view (some program interface)
+ *      Description: To intiazlize a MyController instance we must first use a view
  *                   to let our user control eveything, the user will chose his in and out streaming channels
  *                   and will use the view start method to work with our Controller and model parts.
  */
@@ -28,23 +27,21 @@ MyController::MyController(IView *view)
     _commands["remove field"] = new RemoveFieldCommand(_view, _model);
     _commands["adjust field order"] = new AdjustFieldOrderCommand(_view, _model);
     _commands["set field data"] = new SetFieldDataCommand(_view, _model);
+    _commands["exit"] = new ExitCommand(_view, _model);
+
+    vector<string> keys;
+    for (auto it = _commands.begin(); it != _commands.end(); it++)
+        keys.push_back(it->first);
+    _commands["help"] = new HelpCommand(_view, _model, keys);
 
     string welcomeMessage = "/////////////////////////////////////////////////////////////////////////////////////////\n|\t\t\tWelcome to Form - Creator!\t\t\t\t\t|\n|\t\t\tLet's start creating Forms!\t\t\t\t\t|\n/////////////////////////////////////////////////////////////////////////////////////////";
     _view->display(welcomeMessage);
+
+    Command *onLoad = new OnLoadCommand(_view, _model);
+    onLoad->execute();
+    delete onLoad;
 }
 
-/* 
- *      Method: update
- *      Description: This method is part of the observer pattern to update the controller.
- *                   The controller is the observer and needs to decide what to do on coming updates from the observable (the model)
- */
-
-void MyController::update(IFormModel &model)
-{
-    // std::string tmp = model.getState();
-    string tmp = "No model yet";
-    _view->display(tmp);
-}
 
 /* 
  *      Method: get

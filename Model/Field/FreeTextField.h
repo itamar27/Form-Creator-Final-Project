@@ -8,10 +8,13 @@ using namespace std;
 
     Class     : FreeTextField
     Memebers  : defaultText
-    Methods   : changeParameters()
+    Methods   : saveField(std::ofstream &oFile)
+                loadField(std::ifstream &iFile)
+                generateField()
+                changeParameters(const vector<string> &params)
     
     Description: Implementing Field of type "Free Text", given a option to set
-                 a default text to it. 
+                 a default text to it.
 
 ----------------------------------------------------------------*/
 
@@ -22,12 +25,16 @@ private:
     string _defaultText;
 
 public:
+    FreeTextField(std::ifstream &iFile)
+    {
+        loadField(iFile);
+    }
     FreeTextField(const string &headLine) : Field(headLine), _defaultText("") {}
     FreeTextField(const string &headLine, const string &defaultText) : Field(headLine), _defaultText(defaultText) {}
     ~FreeTextField() {}
 
-    void saveField(std::string name, std::ofstream *oFile);
-    void loadField(std::ifstream *iFile, std::string name);
+    void saveField(std::ofstream &oFile);
+    void loadField(std::ifstream &iFile);
     std::string generateField();
-    virtual void changeParameters(const vector<string>& params);
+    virtual void changeParameters(const vector<string> &params);
 };

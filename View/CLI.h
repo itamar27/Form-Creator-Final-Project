@@ -11,12 +11,15 @@ using namespace std;
 /*----------------------------------------------------------------
 
     Class     : CLI
+
     Memebers  : ostram& _out
                 istream& _in
+
     Methods   : start()
                 getOStream()
                 display()
                 parseInput(string& str, MyController* con)
+                display(string &msg)
     
     Description: A class implementing the IView interface through CLI (=Command Line Interface) 
                  The addition of the parseInput() method is to parse the CLI input and send it to the Controller.
@@ -34,8 +37,8 @@ public:
 public:
     virtual void start();
     virtual ostream &getOStream();
-    virtual vector<string> parseInput(string& str, MyController* con);
-    virtual void display(string& msg);
+    virtual vector<string> parseInput(string &str, MyController *con);
+    virtual void display(string &msg);
 
 private:
     ostream &_out;

@@ -18,6 +18,22 @@ void HtmlForm::addField(string componentName, Field* field) {
     }    
 }
 
+void HtmlForm::removeField(string componentName, string fieldName) {
+    for(auto it = _components.begin(); it != _components.end(); it++) {
+        if((*it)->getName() == componentName) {
+            (*it)->removeField(fieldName);
+            return;
+        }
+    }
+}
+
+void HtmlForm::adjustFieldOrder(string componentName, string fieldName, string replaceWith) {
+    for(auto it = _components.begin(); it != _components.end(); it++) {
+        if((*it)->getName() == componentName) {
+            (*it)->adjustFieldsOrder(fieldName, replaceWith);
+        }
+    } 
+}
 
 void HtmlForm::removeComponent(string name)
 {
@@ -28,7 +44,32 @@ void HtmlForm::removeComponent(string name)
     }
 }
 
-void HtmlForm::adjustComponentOrder(string name, int newPosition) {}
+void HtmlForm::adjustComponentOrder(string componentName, string replaceWith) {
+    int index1 = -1;
+    int index2 = -1;
+
+    for(int i=0; i<_components.size(); i++) {
+        if(_components[i]->getName() == componentName) {
+            index1 = i;
+        }
+        if(_components[i]->getName() == replaceWith) {
+            index2 = i;
+        }
+    }
+    if(index1 != -1 && index2 != -1) {
+        auto temp = _components[index1];
+        _components[index1] = _components[index2];
+        _components[index2] = temp;
+    }
+}
+
+void HtmlForm::changeComponentName(string componentName, string newName) {
+    for(auto it = _components.begin(); it != _components.end(); it++) {
+        if((*it)->getName() == componentName) {
+            (*it)->changeName(newName);
+        }
+    }
+}
 
 void HtmlForm::generateForm()
 {

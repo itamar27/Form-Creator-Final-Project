@@ -5,18 +5,21 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    InterFace : SingleChoiceField
-    Memebers  : None
-    Methods   : changeParameters()
+    Class : SingleChoiceField
+
+    Methods   : saveField(std::ofstream &oFile)
+                loadField(std::ifstream &iFile)
+                generateField()
     
-    Description: Implementing SelectField for a single choice option.
+    Description: Implementing SelectField for a single choice option (radio buttons).
 
 ----------------------------------------------------------------*/
 
 class SingleCoichField : public SelectField
 {
 public:
-    SingleCoichField(std::ifstream &iFile) {
+    SingleCoichField(std::ifstream &iFile)
+    {
         loadField(iFile);
     }
 

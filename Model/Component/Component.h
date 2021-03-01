@@ -13,23 +13,27 @@
 /*----------------------------------------------------------------
 
     InterFace :  Component
-    Memebers  : _name, _fields
-    Methods   : addField()
-                removeField(field)
-                adjustOrder(string name, int newPosition)
+    Methods   : addField(IField *field)
+                removeField(string name)
+                adjustFieldsOrder(string fieldName, string replaceWith)
+                changeFieldParameter(string name, const vector<string>& params)
+                saveComponent(std::ofstream &oFile)
+                loadComponent(std::ifstream &iFile)
+                generateComponent()
+                containtsField(string fieldName)
     
-    Description: This class is a general abstract class that implements
-                 some of the components common behaviors. 
+    Description: This class implements the IComponent interface for a component containing only an head line (name). 
 
 ----------------------------------------------------------------*/
 
 class Component : public IComponent
 {
 public:
-    Component(std::ifstream &iFile) {
+    Component(std::ifstream &iFile)
+    {
         loadComponent(iFile);
     }
-    
+
     Component(string name)
     {
         if (name == "")
@@ -38,21 +42,16 @@ public:
     }
 
 public:
+    virtual void changeName(string name)
+    {
+        _name = name;
+    }
     virtual void addField(IField *field);
-<<<<<<< Updated upstream
-    virtual void removeField(int index);
-    virtual void adjustFieldsOrder(string name, int newPosition);
-    virtual void changeFieldParameter(int index) ;
-    virtual void saveComponent() ;
-    virtual void uploadComponent();
-=======
     virtual void removeField(string name);
     virtual void adjustFieldsOrder(string fieldName, string replaceWith);
-    virtual void changeFieldParameter(string name, const vector<string>& params);
+    virtual void changeFieldParameter(string name, const vector<string> &params);
     virtual void saveComponent(std::ofstream &oFile);
     virtual void loadComponent(std::ifstream &iFile);
->>>>>>> Stashed changes
     virtual std::string generateComponent();
     virtual int containtsField(string fieldName);
-
 };

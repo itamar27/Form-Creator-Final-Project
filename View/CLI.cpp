@@ -2,7 +2,7 @@
 
 /*
  *      Method: Start()
- *      Description: This method of the CLI is the entire interface for user to work with in the 
+ *      Description: This method of the CLI is the entire interface for the user to work with in the 
  *                   FormCreator CLI interface.
  */
 
@@ -24,7 +24,7 @@ void CLI::start()
         {
             try
             {
-                com->execute(parameters);
+                com->execute();
             }
             catch (const char *e)
             {
@@ -39,7 +39,7 @@ void CLI::start()
 
 /*
  *      Method: getOstream()
- *      Description: A friend function to return the 'out' stream of view to help other MVC members 
+ *      Description: A friend function to return the 'out' stream of view to help other MVC members
  */
 
 std::ostream &CLI::getOStream()
@@ -91,6 +91,7 @@ std::vector<std::string> CLI::parseInput(std::string &str, MyController *con)
     return vec;
 }
 
-void CLI::display(string& msg) {
+void CLI::display(string &msg)
+{
     _out << msg << endl;
 }
