@@ -20,8 +20,11 @@ public:
 
     virtual void addComponent(Component *component);
     virtual void addField(string componentName, Field* field);
+    virtual void removeField(string componentName, string fieldName);
     virtual void removeComponent(string name);
-    virtual void adjustComponentOrder(string name, int newPosition);
+    virtual void adjustFieldOrder(string componentName, string fieldName, string replaceWith);
+    virtual void changeComponentName(string componentName, string newName);
+    virtual void adjustComponentOrder(string name, string replaceWith);
     virtual void generateForm();
     virtual int containtsComponent(string name);
     virtual int containtsField(string componentName ,string fieldName);

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <map>
 
 #include "./IFormModel.h"
 #include "./Form/HtmlForm.h"
@@ -16,18 +15,25 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    Class : HtmlFormModel
-    Methods   : newForm(string name);
-                loadForm(string name);
-                saveForm(string name);
-                changeFormName(string formName, string newName);
-                addComponent(string name, string type);
-                removeComponent(string name);
-                changeComponentName(string componentName, string newName);
-                adjustComponentOrder(string name, int newPoistion);
-                addField(string name, string type);
-                removeField(string name);
-                adjustFieldOrder(string name, int newPoistion);
+    Class     : HtmlFormModel
+
+    Members   : _form
+
+    Methods   : newForm(string name)
+                loadForm(string fileName)
+                saveForm(string fileName)
+                changeFormName(string newName)
+                generateForm()
+                addComponent(string componentName)
+                removeComponent(string componentName)
+                changeComponentName(string componentName, string newName)
+                adjustComponentOrder(string componentName, string replaceWith)
+                addField(string componentName, string fieldName, string type)
+                removeField(string componentName, string fieldName)
+                adjustFieldOrder(string componentName, string fieldName, string replaceWith)
+                setFieldData(string componentName, string fieldName, const vector<string> &params)
+                isFormExists()
+                removeForm()
 
     Description: This class implements the IFormModel interface for html forms.
 
@@ -36,10 +42,15 @@ using namespace std;
 class HtmlFormModel : public IFormModel
 {
 public:
-    HtmlFormModel() {
+    HtmlFormModel()
+    {
         _form = nullptr;
     };
-    ~HtmlFormModel() {};
+    ~HtmlFormModel()
+    {
+        saveForm(_form->getName());
+        delete _form;
+    }
 
 public:
     virtual string newForm(string name);
@@ -49,18 +60,6 @@ public:
     virtual string generateForm();
 
 public:
-<<<<<<< Updated upstream
-    virtual string addComponent(string formName, string componentName);
-    virtual string removeComponent(string formName, string componentName);
-    virtual string changeComponentName(string componentName, string newName);
-    virtual string adjustComponentOrder(string name, int newPoistion);
-
-public:
-    virtual string addField(string formName, string componentName, string fieldName, string type);
-    virtual string removeField(string name);
-    virtual string adjustFieldOrder(string name, int newPoistion);
-    virtual string setFieldData(string name, int index);
-=======
     virtual string addComponent(string componentName);
     virtual string removeComponent(string componentName);
     virtual string changeComponentName(string componentName, string newName);
@@ -70,9 +69,23 @@ public:
     virtual string addField(string componentName, string fieldName, string type);
     virtual string removeField(string componentName, string fieldName);
     virtual string adjustFieldOrder(string componentName, string fieldName, string replaceWith);
-    virtual string setFieldData(string componentName, string fieldName, const vector<string>& params);
->>>>>>> Stashed changes
+    virtual string setFieldData(string componentName, string fieldName, const vector<string> &params);
+
+public:
+    int isFormExists()
+    {
+        if (_form)
+            return true;
+        else
+            return false;
+    }
+
+    void removeForm()
+    {
+        delete _form;
+        _form = nullptr;
+    }
 
 private:
-    HtmlForm* _form;
+    HtmlForm *_form;
 };

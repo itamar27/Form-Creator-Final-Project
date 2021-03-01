@@ -6,11 +6,14 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    Class     : FreeTextField
-    Memebers  : defaultText
-    Methods   : changeParameters()
+    Class     : InputField
+    Memebers  : _defaultText
+    Methods   : saveField(std::ofstream &oFile)
+                loadField(std::ifstream &iFile)
+                generateField()
+                changeParameters(const vector<string> &params)
     
-    Description: Implementing Field of type "Free Text", given a option to set
+    Description: Implementing Field of type "Input (Text)", given a option to set
                  a default text to it. 
 
 ----------------------------------------------------------------*/
@@ -22,13 +25,17 @@ private:
     string _defaultText;
 
 public:
+    InputField(std::ifstream &iFile)
+    {
+        loadField(iFile);
+    }
     InputField(const string &headLine) : Field(headLine), _defaultText("") {}
     InputField(const string &headLine, const string &defaultText) : Field(headLine), _defaultText(defaultText) {}
     ~InputField() {}
 
-    void saveField(std::string name, std::ofstream *oFile);
-    void loadField(std::ifstream *iFile, std::string name);
+    void saveField(std::ofstream &oFile);
+    void loadField(std::ifstream &iFile);
     std::string generateField();
-    
-    virtual void changeParameters(const vector<string>& params);
+
+    virtual void changeParameters(const vector<string> &params);
 };

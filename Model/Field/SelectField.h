@@ -6,14 +6,17 @@ using namespace std;
 /*----------------------------------------------------------------
 
     InterFace : SelectField
-    Memebers  : values[]
-    Methods   : changeParameters()
-                addValue()
-                removeValue()
+
+    Memebers  : _values[]
+
+    Methods   : changeParameters(const vector<string> &params)
+                addValue(string value)
+                removeValue(string val)
     
     Description: Implementing Field for a all type of Select Fields.
                  By inheriting this class you must implement changeParameters
                  and include calls for addValue() and removeValue() in it.
+                 Any field that holds set of values can implement this interface.
 
 ----------------------------------------------------------------*/
 
@@ -22,7 +25,7 @@ class SelectField : public Field
 protected:
     vector<string> _values;
     SelectField() {}
-    
+
 public:
     SelectField(string headLine) : Field(headLine) {}
     ~SelectField() {}
@@ -57,9 +60,12 @@ public:
 
     virtual void removeValue(string val)
     {
-        for(auto it = _values.begin(); it != _values.end(); it++){
-            if((*it) == val) {
+        for (auto it = _values.begin(); it != _values.end(); it++)
+        {
+            if ((*it) == val)
+            {
                 _values.erase(it);
+                return;
             }
         }
     }

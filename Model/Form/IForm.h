@@ -32,12 +32,19 @@ public:
     void changeName(string name) { _name = name;}
     virtual void addComponent(Component* component) = 0;
     virtual void addField(string componentName, Field* field) = 0;
+    virtual void removeField(string componentName, string fieldName) = 0;
+    virtual void adjustFieldOrder(string componentName, string fieldName, string replaceWith) = 0;
     virtual void removeComponent(string name) = 0;
-    virtual void adjustComponentOrder(string name, int newPosition) = 0;
+    virtual void changeComponentName(string componentName, string newName) = 0;
+    virtual void adjustComponentOrder(string name, string replaceWith) = 0;
     virtual void generateForm() = 0;
     virtual int containtsComponent(string name) = 0;
     virtual int containtsField(string componentName ,string fieldName) = 0;
     virtual void saveForm(std::ofstream &oFile) = 0;
     virtual void loadForm(std::ifstream &iFile) = 0;
     virtual void changeFieldData(string componentName, string fieldName, const vector<string>& params) = 0;
+
+    string getName() {
+        return _name;
+    }
 };

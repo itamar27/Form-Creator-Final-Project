@@ -5,18 +5,21 @@ using namespace std;
 
 /*----------------------------------------------------------------
 
-    InterFace : MultiChoiceField
-    Memebers  : None
-    Methods   : changeParameters()
+    Class     : MultiChoiceField
+
+    Methods   : saveField(std::ofstream &oFile)
+                loadField(std::ifstream &iFile)
+                generateField()
     
-    Description: Implementing SelectField for a multio choice option.
+    Description: Implementing SelectField for a multi choice option (check boxes).
 
 ----------------------------------------------------------------*/
 
 class MultiChoiceField : public SelectField
 {
 public:
-    MultiChoiceField(std::ifstream &iFile) {
+    MultiChoiceField(std::ifstream &iFile)
+    {
         loadField(iFile);
     }
     MultiChoiceField(string headLine) : SelectField(headLine) {}
